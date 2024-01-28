@@ -1,6 +1,6 @@
 ---
 title: "Regression"
-author: "Your Name"
+author: "Amie Thomas"
 date: "2022-12-21"
 output: html_document
 ---
@@ -17,6 +17,14 @@ pacman::p_load(
       , lubridate
       , AmesHousing
       )
+
+# install.packages(c("Matrix", "MatrixModels", "mvtnorm"), type = "binary")
+
+# install.packages("MatrixModels", repos = "https://cloud.r-project.org/")
+# install.packages("MatrixModels")
+
+library(MatrixModels)
+
 ```
 
 ```{css,echo=FALSE}
@@ -291,11 +299,13 @@ Here are few rules:
 - You need to explain why you added each variable.
 
 ```{r,eval=FALSE,echo=show_code}
-lmfit_2008<- # ["your model here"] # use ames_raw_2008
+lmfit_2008<- lm(log(SalePrice) ~ `Lot Area` + `Total Bsmt SF` + `Gr Liv Area`, data = ames_raw_2008)
 ```
 
 When you decide on your model use the following to come up with your test loss.
 ```{r,eval=FALSE,echo=show_code}
+
+lmfit_2008 <- lm(log(SalePrice) ~ `Lot Area` + `Total Bsmt SF` + `Gr Liv Area`, data = ames_raw_2008)
 pred_2009<-exp(predict(lmfit_2008,newdata=ames_raw_2009))
 calc_loss(pred_2009,ames_raw_2009$SalePrice)
 ```
@@ -407,6 +417,10 @@ Please write your answer in full sentences.
 
 8. This question involves the use of simple linear regression on the `Auto` data set.
 (a) Use the lm() function to perform a simple linear regression with mpg as the response and horsepower as the predictor. Use the summary() function to print the results.
+
+```{r}
+
+```
 
 Your code:
 ```{r,echo=TRUE}
